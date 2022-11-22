@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+    <div id="page-heading">
+        TODO APP
+    </div>
+
+    <main>
+        <form id="create-task" action="/create-task" method="POST">
+            <div id="task-desc">
+                <div id="desc">DESCRIPTION</div>
+                <input id="enter-task" type="text" name="task" placeholder="Enter Your Task" required>
+            </div>
+            <div id="task-cat-date">
+                <div id="task-cat">
+                    <div id="cat-heading">CATEGORY</div>
+                    <select name="category" id="choose-cat">
+                        <option value="" selected disabled>Choose a category</option>
+                        <option value="WORK">Work</option>
+                        <option value="HOME">Home</option>
+                        <option value="PERSONAL">Personal</option>
+                        <option value="OTHER">Other</option>
+                    </select>
+                </div>
+                <div id="task-date">
+                    <div id="due-date">DUE DATE</div>
+                    <input id="date-select" name="deadline" type="date">
+                </div>
+            </div>
+        </form>
+
+        <div id="operations">
+            <button id="add-btn" form="create-task">
+                <i class="fas fa-add"></i>
+                ADD TASK
+            </button>
+            <button id="del-btn" form="tasks">
+                <i class="fas fa-trash"></i>
+                DELETE TASKS
+            </button>
+        </div>
+
+        <form id="tasks" action="/delete-task" method="GET">
+            <ul>
+                <% for(let i of task_list) { %>
+                    <li>
+                        <input type="checkbox" class="task-check" name="<%= i.id %>">
+                        <div class="task-det">
+                            <div class="t-ds">
+                                <%= i.task %>
+                            </div>
+                            <div class="t-dl">
+                                <i class="fas fa-calendar-days fac"></i>
+                                <%= i.deadline %>
+                            </div>
+                        </div>
+                        <div class="t-cat">
+                            <%= i.category %>
+                        </div>
+                    </li>
+                    <% } %>
+            </ul>
+        </form>
+    </main>
+
+    <script text="text/javascript" src="/js/home.js"></script>
+</body
